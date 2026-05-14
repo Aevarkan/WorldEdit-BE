@@ -10,6 +10,12 @@ body:
     options:
     - label: I have searched the existing issues
       required: true 
+    - label: I have enabled Beta APIs
+      required: true 
+    - label: I have read the [Quick Start](https://worldedit-be-docs.readthedocs.io/en/latest/quick_start/) guide
+      required: true 
+    - label: I have checked the [FAQ](https://worldedit-be-docs.readthedocs.io/en/latest/common_questions/)
+      required: true 
 
 - type: textarea
   attributes:
