@@ -21,7 +21,7 @@ export class GradientsModule extends EditorModule {
         super(session);
         this.editPatternList = new PatternListUIBuilder([], this.player);
         this.createPatternList = new PatternListUIBuilder([], this.player);
-        const tool = session.toolRail.addTool("worldedit:gradients", { title: "WorldEdit Gradients", icon: "pack://textures/editor/gradients_tool.png" });
+        const tool = session.toolRail.addTool("worldedit:gradients", { title: "WorldEdit: Gradients", icon: "pack://textures/editor/gradients_tool.png" });
         this.pane = new UIPane(this.session, {
             title: "Gradients",
             items: [

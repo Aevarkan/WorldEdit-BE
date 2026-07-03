@@ -2,9 +2,7 @@ import {
     CursorControlMode,
     CursorTargetMode,
     ActionTypes,
-    EditorInputContext,
     KeyboardKey,
-    InputModifier,
     MouseActionType,
     MouseInputType,
     LogChannel,
@@ -49,23 +47,10 @@ export class BrushPainterModule extends EditorModule {
             onExecute: () => this.session.toolRail.setSelectedToolId(this.tool.id),
         });
         this.tool = this.session.toolRail.addTool("worldedit:modalTool:brushPainter", {
-            title: "resourcePack.editor.brushPaint.title",
+            title: "WorldEdit: Brush",
             icon: "pack://textures/editor/Brush.png?filtering=point",
             action: activationAction,
         });
-        this.session.inputManager.registerKeyBinding(
-            EditorInputContext.GlobalToolMode,
-            activationAction,
-            {
-                key: KeyboardKey.KEY_B,
-                modifier: InputModifier.Control,
-            },
-            {
-                uniqueId: "worldedit:toolModeKeyBinding:toggleBrushMode",
-                label: "resourcePack.editor.brushPaint.inputContext.activateBrushPaint.title",
-                tooltip: "resourcePack.editor.brushPaint.inputContext.activateBrushPaint.tooltip",
-            }
-        );
         this.rootPane = this.session.createPropertyPane({
             title: "resourcePack.editor.brushPaint.title",
             infoTooltip: {

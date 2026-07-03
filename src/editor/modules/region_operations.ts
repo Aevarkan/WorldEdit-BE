@@ -43,7 +43,7 @@ export class RegionOpModule extends EditorModule {
 
     constructor(session: IPlayerUISession) {
         super(session);
-        const tool = session.toolRail.addTool("worldedit:region_operations", { title: "WorldEdit Region Operations", icon: "pack://textures/editor/region_operations_tool.png" });
+        const tool = session.toolRail.addTool("worldedit:region_operations", { title: "WorldEdit: Region Operations", icon: "pack://textures/editor/region_operations_tool.png" });
         const widgetGroup = session.extensionContext.widgetManager.createGroup({ groupSelectionMode: WidgetGroupSelectionMode.None, visible: true });
 
         this.widget = widgetGroup.createWidget(Vector.ZERO, { visible: true });
