@@ -121,7 +121,7 @@ export interface ModalPaneLayout extends PaneLayout {
 }
 
 export class UIPane {
-    private pane: IPropertyPane;
+    private pane?: IPropertyPane;
     private readonly subPanes: Record<string | number, UIPane> = {};
     private readonly modals: Record<string, IModalOverlayPane> = {};
     private readonly observables: Record<string | number, IObservable<number | boolean | Vector3 | LocalizedString>> = {};
@@ -147,6 +147,7 @@ export class UIPane {
     }
 
     get propertyPane() {
+        if (!this.pane) throw new Error("Pane has not been created yet");
         return this.pane;
     }
 
@@ -196,6 +197,7 @@ export class UIPane {
     }
 
     addSubPane(layout: PaneLayout) {
+        if (!this.pane) throw new Error("Cannot add subpane before pane is created");
         return this.createSubPane(generateId(), layout, this.pane.createSubPane(layout)) as string;
     }
 
@@ -208,6 +210,7 @@ export class UIPane {
     }
 
     removeSubPane(id: string) {
+        if (!this.pane) throw new Error("Cannot remove subpane before pane is created");
         if (!(id in this.subPanes)) return;
         this.pane.removeSubPane(this.subPanes[id].mainPane);
         delete this.subPanes[id];
@@ -230,7 +233,6 @@ export class UIPane {
     changeItems(items: PaneItem[]) {
         if (this.pane) this.mainPane.removeSubPane(this.pane);
         this.pane = this.mainPane.createSubPane({ hasExpander: false, hasMargins: false });
-        this.pane.beginConstruct();
         for (let i = 0; i < items.length; i++) {
             const item = items[i];
             const id = item.uniqueId ?? i;
@@ -276,7 +278,6 @@ export class UIPane {
                     this.pane;
             }
         }
-        this.pane.endConstruct();
     }
 
     bindToTool(tool: IModalTool) {
